@@ -52,15 +52,15 @@ export default class LwcCustomLookup extends LightningElement {
     }
     
    setSelectedRecord(event) {
-        var currentText = event.currentTarget.dataset.id;
+        var currentRecId = event.currentTarget.dataset.id;
+        var selectName = event.currentTarget.dataset.name;
         this.txtclassname =  'slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click';
         this.iconFlag = false;
         this.clearIconFlag = true;
         this.selectRecordName = event.currentTarget.dataset.name;
-        var selectName = event.currentTarget.dataset.name;
-        this.selectRecordId = currentText;
+        this.selectRecordId = currentRecId;
         this.inputReadOnly = true;
-        const selectedEvent = new CustomEvent('selected', { detail: {selectName}, });
+        const selectedEvent = new CustomEvent('selected', { detail: {selectName, currentRecId}, });
         // Dispatches the event.
         this.dispatchEvent(selectedEvent);
     }
